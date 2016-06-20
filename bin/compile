@@ -9,6 +9,7 @@ cd $1
 mv .heroku/app $TMP_DIR
 cp -r .heroku $TMP_DIR/
 cp -r .profile.d $TMP_DIR/
+cp -r .jdk $TMP_DIR/
 
 find . -mindepth 1 -delete
 
