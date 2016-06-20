@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ -f $1/.heroku/app/Procfile ]; then
+  echo "Publish"
+  exit 0
+fi
+
+exit 1
