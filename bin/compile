@@ -6,7 +6,10 @@ indent() {
 
 echo "-----> Found a .heroku/app/Procfile"
 
-rm -v -rf $1/* | indent
+cd $1
 
-shopt -s dotglob nullglob
-mv -v $1/.heroku/app/* $1 | indent
+rm -rf !(.heroku|.profile.d) | indent
+
+rsync -av .heroku/app . | indent
+
+rm -rf .heroku/app | indent
