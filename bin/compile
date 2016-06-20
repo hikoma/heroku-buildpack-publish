@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-indent() {
-  sed -u 's/^/       /'
-}
-
 echo "-----> Found a .heroku/app/Procfile"
+
+TMP_DIR=/tmp/heroku-buildpack-publish
 
 cd $1
 
-rm -rf !(.heroku|.profile.d) | indent
+mv .heroku/app $TMP_DIR
+cp -r .heroku $TMP_DIR/
+cp -r .profile.d $TMP_DIR/
 
-rsync -av .heroku/app . | indent
+find . -mindepth 1 -delete
 
-rm -rf .heroku/app | indent
+rsync -a $TMP_DIR/ .
